@@ -1,10 +1,10 @@
 package com.company;
 
 public class Node {
-    private Brick status;
+    private String status;
 
     public Node (Brick s) {
-        status = s;
+        status = String.valueOf ( s );
     }
 
     public enum Brick{
@@ -15,10 +15,15 @@ public class Node {
 
         }
 
+
         @Override
         public String toString () {
             return super.toString ();
         }
+    }
+
+    public String getStatus () {
+        return status;
     }
 
     @Override

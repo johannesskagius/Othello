@@ -5,7 +5,7 @@ import java.util.*;
 public class Main {
     private final Character PLAYER = 'W';
     private final Character AI = 'B';
-    private Node[][] playField2;
+    private Node[][] playField2 = new Node[8][8];
     private List<Node> playAblePositions = new ArrayList<> ();
     private boolean isPlaying = false;
     private Scanner input = new Scanner ( System.in );
@@ -37,7 +37,6 @@ public class Main {
         do {
             System.out.println ( "Where do you want to put your move?" );
             int chosenPos = calcChosenPosition();
-
             if (!moveAccepted) {
                 System.out.println ( "e" );
             }
@@ -88,17 +87,19 @@ public class Main {
     }
 
     private void addEmptySpots () {
-        final int PLAYFIELDSIZE = 8 * 8;
-        for (int i = 0; i < PLAYFIELDSIZE; i++) {
-            playField.add ( new Node ( Node.Brick.NOTPLAYED) );
+        final int PLAYFIELDSIZE = 8;
+        for (int i = 0; i < 8; i++) {
+            for(int j = 0; j <8; j++){
+                playField2[i][j] = new Node ( Node.Brick.NOTPLAYED );
+            }
         }
     }
 
     private void setUp () {
-        playField.get ( 27 ).setPlayedBy ( true );
-        playField.get ( 28 ).setPlayedBy ( false );
-        playField.get ( 35 ).setPlayedBy ( false );
-        playField.get ( 36 ).setPlayedBy ( true );
+//        playField.get ( 27 ).setPlayedBy ( true );
+//        playField.get ( 28 ).setPlayedBy ( false );
+//        playField.get ( 35 ).setPlayedBy ( false );
+//        playField.get ( 36 ).setPlayedBy ( true );
         printStacks ();
     }
 
@@ -107,16 +108,11 @@ public class Main {
         int column = 1;
         int row = 2;
         String s = row+"";
-        for (Node n : playField) {
-            if (column < 8) {
-                s = n.toString ();
-            } else {
-                s = n.toString () + "\n" + row;
-                column = 0;
-                row++;
+        for(Node[] n : playField2){
+            for(int i = 0; i < 8; i++){
+                System.out.print (n[i]);
             }
-            column++;
-            System.out.print ( "\t" + s );
+            System.out.println ("");
         }
     }
 }
