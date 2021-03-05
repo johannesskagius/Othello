@@ -1,30 +1,28 @@
 package com.company;
 
 public class Node {
-    private Character playedBy;
-    private boolean isPlayed = false;
+    private Brick status;
 
-    public Node (Character playedBy, boolean isPlayed) {
-        this.playedBy = playedBy;
-        this.isPlayed = isPlayed;
+    public Node (Brick s) {
+        status = s;
     }
 
-    public boolean isPlayed () {
-        return isPlayed;
-    }
+    public enum Brick{
+        PLAYER("W"),
+        COMPUTER("B"),
+        NOTPLAYED("-");
+        Brick (String s) {
 
-    public void setPlayedBy (boolean playedByPlayer) {
-        if (playedByPlayer) {
-            this.playedBy = 'W';
         }
-        else {
-            this.playedBy = 'B';
+
+        @Override
+        public String toString () {
+            return super.toString ();
         }
-        isPlayed = true;
     }
 
     @Override
     public String toString () {
-        return playedBy.toString ();
+        return "|"+status+"|";
     }
 }
